@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <title></title>
+  </head>
+  <body>
+
+    <div th:replace="fragments/navbar :: guest_navbar">
+      
+  </div>
+    <div class="container">
+        <div class="mx-auto" style="padding-top:2%;">
+          <h1 style="text-align:center; padding-bottom:2%">Най-нови продукти</h1>
+          <div class="row">
+              <div class="col"  th:each="r_product : ${recent}">
+                <div class="card" style="width: 18rem;">
+                
+                  <img th:src="${!r_product.images.isEmpty()} ? ${r_product.images.get(0)} : ${defaultProductImage}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title" th:text = "${r_product.title}"></h5>
+                    <p class="card-text" th:text = ${r_product.description}></p>
+                    <hr>
+                    <h5 th:text = " 'Цена : ' + ${r_product.price} + 'лв.'"></h5>
+                    <a th:href="@{'/product/' + ${r_product.id}}" class="btn btn-primary">Детайли</a>
+                    <br>
+                    <a href="#" class="btn btn-primary" > Добави в количката </a>
+                  </div>
+                  </div>
+
+                </div>
+           </div>
+
+          </div>
+
+        <div class="topProduct mx-auto" style="padding-top:5%;">
+          <h1 style="text-align:center; padding-bottom:3%;">Най-популярни продукти</h1>
+          <div class="row">
+              <div class="col">
+                <div class="card" style="width: 18rem;">
+                  <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">LCD PSP Дисплей</h5>
+                    <p class="card-text">Съвместимо с 1000 сериите.</p>
+                    <hr>
+                    <h5> Цена : 50 лв</h5>
+                    <a href="#" class="btn btn-primary">Детайли</a>
+                    <br>
+                    <a href="#" class="btn btn-primary" > Добави в количката </a>
+                  </div>
+                  </div>
+
+                </div>
+
+                <div class="col" style="padding-bottom:2%;">
+                  <div class="card" style="width: 18rem;">
+                    <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">LCD PSP Дисплей</h5>
+                      <p class="card-text">Съвместимо с 1000 сериите.</p>
+                      <hr>
+                      <h5> Цена : 50 лв</h5>
+                      <a href="#" class="btn btn-primary">Детайли</a>
+                      <br>
+                      <a href="#" class="btn btn-primary" > Добави в количката </a>
+                    </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col">
+                    <div class="card" style="width: 18rem;">
+                      <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">LCD PSP Дисплей</h5>
+                        <p class="card-text">Съвместимо с 1000 сериите.</p>
+                        <hr>
+                        <h5> Цена : 50 лв</h5>
+                        <a href="#" class="btn btn-primary">Детайли</a>
+                        <br>
+                        <a href="#" class="btn btn-primary" > Добави в количката </a>
+                      </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col">
+                      <div class="card" style="width: 18rem;">
+                        <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">LCD PSP Дисплей</h5>
+                          <p class="card-text">Съвместимо с 1000 сериите.</p>
+                          <hr>
+                          <h5> Цена : 50 лв</h5>
+                          <a href="#" class="btn btn-primary">Детайли</a>
+                          <br>
+                          <a href="#" class="btn btn-primary" > Добави в количката </a>
+                        </div>
+                        </div>
+
+                      </div>
+
+                      <div class="col">
+                        <div class="card" style="width: 18rem;">
+                          <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">LCD PSP Дисплей</h5>
+                            <p class="card-text">Съвместимо с 1000 сериите.</p>
+                            <hr>
+                            <h5> Цена : 50 лв</h5>
+                            <a href="#" class="btn btn-primary">Детайли</a>
+                            <br>
+                            <a href="#" class="btn btn-primary" > Добави в количката </a>
+                          </div>
+                          </div>
+
+                        </div>
+
+                        <div class="col">
+                          <div class="card" style="width: 18rem;">
+                            <img src="https://www.powerbookmedic.com/xcart1/images/D/psp-1000-lcd.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">LCD PSP Дисплей</h5>
+                              <p class="card-text">Съвместимо с 1000 сериите.</p>
+                              <hr>
+                              <h5> Цена : 50 лв</h5>
+                              <a href="#" class="btn btn-primary">Детайли</a>
+                              <br>
+                              <a href="#" class="btn btn-primary" > Добави в количката </a>
+                            </div>
+                            </div>
+
+                          </div>
+
+          </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

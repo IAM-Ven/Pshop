@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Default form register -->
+      
+      <div th:if="${error != null}" class="alert alert-danger" role="alert">
+      		<p th:text="${error}" class=" text-center"> </p>
+      </div>
+      
+       <p th:each="error: ${#fields.errors('*')}"
+          				th:text="${error}"></p>
+      
+      <form class="text-center border border-light p-5" th:object="${newUser}"  th:action="@{/auth/processRegister}" style="width:50%; margin-left:25%" method="POST">
+
+          <p class="h4 mb-4">Регистрирай се</p>
+
+          <div class="form-row mb-4">
+              <div class="col">
+                  <!-- First name -->
+                  <input type="text" id="defaultRegisterFormFirstName"  th:field="*{firstName}" class="form-control" placeholder="Име">
+                   <p th:each="error: ${#fields.errors('firstName')}"
+          				th:text="${error}"></p>
+              </div>
+              <div class="col">
+                  <!-- Last name -->
+                  <input type="text" id="defaultRegisterFormLastName" th:field="*{lastName}" class="form-control" placeholder="Фамилия">
+                   <p th:each="error: ${#fields.errors('lastName')}"
+          			th:text="${error}"></p>
+              </div>
+          </div>
+
+
+         <input type="text" id="defaultRegisterFormUsername" th:field="*{username}" class="form-control mb-4" placeholder="Потребителско име">
+           <p th:each="error: ${#fields.errors('username')}"
+          th:text="${error}">Validation error</p>
+          
+          <!-- E-mail -->
+          <input type="email" id="defaultRegisterFormEmail" th:field="*{email}" class="form-control mb-4" placeholder="Електронна поща">
+
+		 <p th:each="error: ${#fields.errors('email')}"
+          th:text="${error}">Validation error</p>
+
+          <!-- Password -->
+          <input type="password" id="defaultRegisterFormPassword" class="form-control" th:field="*{password}" placeholder="Парола" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+              Поне 8 букви и 1 цифра
+          </small>
+          <p th:each="error: ${#fields.errors('password')}"
+          th:text="${error}">Validation error</p>
+          
+          <input type="password" id="defaultRegisterFormConfirmPassword" class="form-control" th:field="*{matchingPassword}" placeholder="Парола" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+              Поне 8 букви и 1 цифра
+          </small>
+          <p th:each="error: ${#fields.errors('matchingPassword')}"
+          th:text="${error}">Validation error</p>
+
+          <!-- Phone number -->
+          <input type="text" id="defaultRegisterPhonePassword" class="form-control" th:field="*{phoneNumber}" placeholder="Телефонен номер" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+              За по-бързо пазаруване
+          </small>
+			<p th:each="error: ${#fields.errors('phoneNumber')}"
+          th:text="${error}">Validation error</p>
+			
+          <input type="text" id="defaultRegisterFormAddress" class="form-control" th:field="*{address}" placeholder="Адрес" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+          <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+              Личен адрес или офис на еконт.
+          </small>
+          <p th:each="error: ${#fields.errors('address')}"
+          th:text="${error}">Validation error</p>
+
+          <!-- Sign up button -->
+          <button class="btn btn-info my-4 btn-block" type="submit">Регистрирай се</button>
+
+          <!-- Terms of service -->
+          <p>Чрез кликване на
+              <em>Регистрирай се</em> вие се съгласявате със нашите
+              <a href="" target="_blank">terms of service</a>
+              </p>
+              <hr>
+              <a th:href="@{/}">Начало</a>
+      </form>
+      <!-- Default form register -->
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

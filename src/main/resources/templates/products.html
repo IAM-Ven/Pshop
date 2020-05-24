@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <title></title>
+  </head>
+  <body>
+
+    <div th:replace="fragments/navbar :: guest_navbar">
+    </div>
+    <div class="container">
+		        <div class="mx-auto" style="padding-top:2%;">
+		        <div th:if = "${page != null}">
+		        <div th:if=${!page.items.isEmpty()}>
+		          <h1 style="text-align:center; padding-bottom:2%">Намерени Резултати</h1>
+		         <div class="col"  th:each="r_product : ${page.items}">
+                <div class="card" style="width: 18rem;">
+                
+                  <img th:src="${!r_product.images.isEmpty()} ? ${r_product.images.get(0)} : ${@environment.getProperty('pshop.defaults.product.image')}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title" th:text = "${r_product.title}"></h5>
+                    <p class="card-text" th:text = ${r_product.description}></p>
+                    <hr>
+                    <h5 th:text = " 'Цена : ' + ${r_product.price} + 'лв.'"></h5>
+                    <a th:href="@{'/product/' + ${r_product.id}}" class="btn btn-primary">Детайли</a>
+                    <br>
+                    <a href="#" class="btn btn-primary" > Добави в количката </a>
+                  </div>
+                  </div>
+                  </div>
+
+                	</div>
+                	<div th:unless="${!page.items.isEmpty()}">
+						<h1 style="text-align:center; padding-bottom:2%">Няма Намерени Резултати</h1>
+					</div>
+				</div>
+				
+				
+				<div th:if= "${categ != null}"> 
+					
+					<div class="row" style="padding-bottom:2%">
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <img style="width:200px; height:200px;" th:src="${categ.image} != null? ${categ.image.path} : ${@environment.getProperty('pshop.defaults.category.image')}" class="card-img-top" alt="...">
+                    <h5 class="card-title" th:text="${categ.name}"></h5>
+                    <p class="card-text" th:text="${categ.description}"></p>
+                  </div>
+                  </div>          
+                </div>
+                <hr>
+                
+                <div th:if="${!categ.products.isEmpty()}">
+                
+                <h1 style="text-align:center; padding-bottom:2%">Продукти</h1>
+                
+                <div class="col" style="padding-botton:2%" th:each="r_product : ${categ.products}">
+                
+					 <div class="card" style="width: 18rem;">
+                
+                  <img th:src="${!r_product.images.isEmpty()} ? ${r_product.images.get(0)} : ${@environment.getProperty('pshop.defaults.product.image')}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title" th:text = "${r_product.title}"></h5>
+                    <p class="card-text" th:text = ${r_product.description}></p>
+                    <hr>
+                    <h5 th:text = " 'Цена : ' + ${r_product.price} + 'лв.'"></h5>
+                    <a th:href="@{'/product/' + ${r_product.id}}" class="btn btn-primary">Детайли</a>
+                    <br>
+                    <a href="#" class="btn btn-primary" > Добави в количката </a>
+                  </div>
+                  </div>
+				</div>
+				</div>
+				
+				<div th:unless="${!categ.products.isEmpty()}">
+					<h1 style="text-align:center; padding-bottom:2%">Няма продукти</h1>
+				</div>
+				
+				</div>
+				
+				</div>
+				<div id="pagination" class="row align-items-center justify-content-center">
+					<nav aria-label="...">
+						  <ul class="pagination pagination-lg">
+						    <li class="page-item" th:classappend="${page.currentPage == 1} ? disabled">
+						      <span class="page-link">Previous</span>
+						    </li>
+						    <li class="page-item" th:each="i : ${#numbers.sequence(1, page.pages)}" th:classappend="${page.currentPage == i} ? active" ><a class="page-link" href="#">1</a></li>
+						    
+						    <li class="page-item" th:classappend="${page.currentPage == page.pages} ? disabled">
+						      <a class="page-link" href="#" >Next</a>
+						    </li>
+						  </ul>
+						</nav>
+				
+				</div>
+				
+				
+			</div>
+	</body>
+</html>
+         
