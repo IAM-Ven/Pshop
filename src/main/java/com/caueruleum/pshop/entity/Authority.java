@@ -66,6 +66,11 @@ public class Authority
 		this.authority = authority;
 	}
 	
+	public void setAuthority(AuthorityType type) 
+	{
+		this.authority = type.getType();
+	}
+	
 	
 	
 	

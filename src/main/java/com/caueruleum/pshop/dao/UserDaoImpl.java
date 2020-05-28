@@ -36,6 +36,13 @@ public class UserDaoImpl implements UserDAO
 	{
 		em.merge(user);
 	}
+	
+	@Override
+	public void addUser(User user) 
+	{
+		em.persist(user);
+	}
+	
 
 	@Override
 	public User findByEmail(String email) 
@@ -83,6 +90,7 @@ public class UserDaoImpl implements UserDAO
 		
 	}
 	
+	@Override
 	public User findByUnique(String email, String phoneNumber, String username) 
 	{	
 		TypedQuery<User> query = em.createQuery("SELECT u FROM User u INNER JOIN u.userDetail ud WHERE "
@@ -99,5 +107,4 @@ public class UserDaoImpl implements UserDAO
 		return query.getResultList().stream().findFirst().orElse(null);
 		
 	}
-	
 }

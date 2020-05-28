@@ -62,4 +62,12 @@ public interface UserDAO
 	 */
 	public User findByUnique(String email, String phoneNumber, String username);
 	
+	/**
+	 * Add an user to the database without the "merge" checks
+	 * 
+	 * @param user User the user
+	 * @return 
+	 */
+	public void addUser(User user);
+	
 }

@@ -27,9 +27,6 @@ public class UserServiceImpl implements UserService
 	private UserDAO userDAO;
 	
 	@Autowired
-	private AuthorityDAO authDAO;
-	
-	@Autowired
 	private PasswordEncoder encoder;
 	
 	/**
@@ -69,21 +66,14 @@ public class UserServiceImpl implements UserService
 		
 		User user = new User(registrationDTO.getUsername(), encoder.encode(registrationDTO.getPassword()), false);
 		
-		// TODO: Fix this mess
-		Authority authority = authDAO.findByType(AuthorityType.USER);
-		
-		if (authority == null) 
-		{
-			authority = new Authority(AuthorityType.USER);
-			authority.setUser(user);
-			
-		}
+		Authority authority = new Authority(AuthorityType.USER);
+		authority.setUser(user);
 		
 		user.setAuthority(authority);
 		user.setUserDetail(userDetail);
 		userDetail.setUser(user);
 		
-		userDAO.saveUser(user);
+		userDAO.addUser(user);
 		
 		return user;
 	}

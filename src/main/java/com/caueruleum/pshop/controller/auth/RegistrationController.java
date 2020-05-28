@@ -60,7 +60,6 @@ public class RegistrationController
 	public String processRegister(@ModelAttribute("newUser") @Valid final RegistrationDTO newUser,
 			final BindingResult bindingResult, Model model, WebRequest request, RedirectAttributes attr) 
 	{
-		
 		if(bindingResult.hasErrors()) 
 		{
 			attr.addFlashAttribute("org.springframework.validation.BindingResult.newUser", bindingResult);

@@ -58,7 +58,6 @@ public class PasswordResetTokenRequestListener implements ApplicationListener<On
 		try 
 		{
 			notificationService.sendEmailAsync(message);
-			System.out.println("sent");
 		}
 		catch (MailException ex)
 		{

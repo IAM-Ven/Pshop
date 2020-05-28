@@ -26,5 +26,4 @@ public interface UserDetailDAO
 	 * @return
 	 */
 	public List<UserDetail> getUserDetails();
-
 }

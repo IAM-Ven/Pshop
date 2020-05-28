@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="admin/fragments/layout :: head_files">
+
+</head>
+<body>
+	<header th:replace="admin/fragments/layout :: header"></header>
+	
+	<div class="container">
+		<form th:action="@{/admin/database/user/process-cu}" th:object="${dto}" method="POST">
+			<div class="form-group">
+			    <label for="username">Username</label>
+			    <input type="text" class="form-control" id="username" th:field="*{username}">
+		 	</div>
+		 	
+		 	<div class="form-group">
+		 		<label for="email">Email</label>
+			    <input type="text" class="form-control" id="email" th:field="*{email}">
+		 	</div>
+		 	
+		  	<div class="form-group row" >
+			  	<div class="col">
+			    	<label for="firstName">First Name</label>
+			    	<input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+			  	</div>
+			  	<div class="col">
+			  		<label for="lastName">Last Name</label>
+			  		<input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+			  	</div>
+		  	</div>
+		  	
+		  	<div class="form-group">
+		    	<label for="password">Password</label>
+		    	<input type="password" class="form-control" id="password" th:field="*{password}">
+		  	</div>
+		  	
+			<div class="form-group">
+		    	<label for="isActive">IsActive</label>
+		    	<select id="isActive" class="form-control" th:field="*{isActive}">
+		    		<option th:value="1"> Yes </option>
+		    		<option th:value="0"> No </option>
+		    	</select>
+		  	</div>
+		  	
+			<div class="form-group">
+			   	<label for="authority">Authority</label>
+			   	<select id="isActive" class="form-control" th:field="*{authority}">
+		    		<option th:each="auth: ${authorities}"
+		    			th:value="${auth.type}"
+		    			th:text="${auth}">
+		    		</option>
+		    	</select>
+		 	</div>
+			  
+			<div class="form-group">
+		 		<label for="phoneNumber">Phone Number</label>
+			    <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+		 	</div>
+		 	
+			<div class="form-group">
+		 		<label for="address">Address</label>
+			    <input type="text" class="form-control" id="address" th:field="*{address}">
+		 	</div>  
+			  
+			  
+			  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	
+	<footer th:replace="admin/fragments/layout :: footer"></footer>
+</body>
+</html>
