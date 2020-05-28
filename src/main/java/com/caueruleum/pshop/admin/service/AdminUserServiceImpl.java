@@ -23,7 +23,7 @@ public class AdminUserServiceImpl implements AdminUserService
 	private PasswordEncoder encoder;
 	
 	/**
-	 * Handles updating the user, userdetail and authority
+	 * Handles updating the user, user detail and authority
 	 * 
 	 * @param dto AdminUserDTO basically the user input
 	 * @param user User the user so we won`t have to query a second time.
@@ -44,7 +44,8 @@ public class AdminUserServiceImpl implements AdminUserService
 		ud.setPhoneNumber(dto.getPhoneNumber());
 		
 		user.setIsActive(dto.getIsActive());
-		// If we don`t need to update the password.
+		
+		// If we need to update the password.
 		if(!dto.getPassword().isEmpty()) 
 		{
 			user.setPassword(dto.getPassword());
@@ -118,12 +119,9 @@ public class AdminUserServiceImpl implements AdminUserService
 		{
 			this.handleUpdate(dto, user);
 		}
-		
-		
+				
 		return user;
 		
 	}
 
-	
-	
 }

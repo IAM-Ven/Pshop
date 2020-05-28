@@ -1,5 +1,6 @@
 package com.caueruleum.pshop.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Authority
 	private int id;
 	
 	// The user of the authority
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="username", nullable=false)
 	private User user;
 	

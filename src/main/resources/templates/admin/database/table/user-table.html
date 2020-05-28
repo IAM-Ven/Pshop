@@ -32,7 +32,7 @@
                 <td th:text="${user.userDetail.email}"></td>
                 <td th:text="${user.userDetail.address}"></td>
                 <td><a th:href="'cu/' + ${user.username}">Update</a></td>
-                <td><a href="#">Delete</a></td>
+                <td><a th:href="'/admin/database/user/delete/' + ${user.username} + '/'">Delete</a></td>
             </tr>
             </tbody>
         </table>

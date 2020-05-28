@@ -107,4 +107,11 @@ public class UserDaoImpl implements UserDAO
 		return query.getResultList().stream().findFirst().orElse(null);
 		
 	}
+	
+	@Override
+	public void deleteUser(User user) 
+	{
+		em.remove(user);
+	}
+	
 }

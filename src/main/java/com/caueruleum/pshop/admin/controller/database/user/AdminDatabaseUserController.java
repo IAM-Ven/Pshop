@@ -99,6 +99,27 @@ public class AdminDatabaseUserController
 			
 		}
 	}
+	
+	@GetMapping("/user/delete/{username}/")
+	private String processDelete(@PathVariable String username, Model model, RedirectAttributes attr) 
+	{
+		User user = this.userService.findUserByUsername(username);
+		
+		try 
+		{
+			this.userService.deleteUser(user);
+			attr.addAttribute("success", true);
+		}
+		catch(Exception ex) 
+		{
+			System.out.println(ex);
+			attr.addAttribute("error", true);
+		}
+		
+		return "redirect:/admin/database/user/";
+		
+		
+	}
 
 	
 }

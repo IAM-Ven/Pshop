@@ -70,4 +70,10 @@ public interface UserDAO
 	 */
 	public void addUser(User user);
 	
+	/**
+	 * Delete an user
+	 * @param user
+	 */
+	public void deleteUser(User user);
+	
 }

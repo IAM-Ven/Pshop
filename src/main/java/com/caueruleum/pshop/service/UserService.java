@@ -53,4 +53,10 @@ public interface UserService
 	 */
 	public List<User> findAll();
 
+	/**
+	 * Call the dao to delete a user from the db
+	 * @param user User user the user
+	 */
+	public void deleteUser(User user);
+
 }

@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.caueruleum.pshop.dao.AuthorityDAO;
 import com.caueruleum.pshop.dao.UserDAO;
 import com.caueruleum.pshop.dto.RegistrationDTO;
 import com.caueruleum.pshop.entity.Authority;
@@ -130,6 +129,15 @@ public class UserServiceImpl implements UserService
 	}
 	
 	
+
+	@Override
+	@Transactional
+	public void deleteUser(User user)
+	{
+		this.userDAO.deleteUser(user);
+		
+	}
+
 	private boolean usernameExists(String username) 
 	{
 		User user = userDAO.findByUsername(username);
@@ -157,5 +165,4 @@ public class UserServiceImpl implements UserService
 		return false;
 		
 	}
-
 }
