@@ -28,7 +28,7 @@ public class AdminUserServiceImpl implements AdminUserService
 	 * @param dto AdminUserDTO basically the user input
 	 * @param user User the user so we won`t have to query a second time.
 	 */
-	private void handleUpdate(AdminUserDTO dto, User user) throws AuthorityDoesNotExistException 
+	private void handleUpdate(AdminUserDTO dto, User user)
 	{
 		Authority auth = user.getAuthority();
 		UserDetail ud = user.getUserDetail();
