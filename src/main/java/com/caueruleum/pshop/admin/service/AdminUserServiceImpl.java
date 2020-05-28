@@ -28,18 +28,15 @@ public class AdminUserServiceImpl implements AdminUserService
 	 * @param dto AdminUserDTO basically the user input
 	 * @param user User the user so we won`t have to query a second time.
 	 */
-	private void handleUpdate(AdminUserDTO dto, User user) 
+	private void handleUpdate(AdminUserDTO dto, User user) throws AuthorityDoesNotExistException 
 	{
 		Authority auth = user.getAuthority();
 		UserDetail ud = user.getUserDetail();
 		
-		var type = AuthorityType.fromString(dto.getAuthority());
-		// If the authority is an actual authority
-		if(type != null) 
-		{
-			auth.setAuthority(type);
-		}
-		// Update the fields
+		// Update the authority fields
+		auth.setAuthority(dto.getAuthority());
+
+		// Update the user detail fields
 		ud.setAddress(dto.getAddress());
 		ud.setEmail(dto.getEmail());
 		ud.setFirstName(dto.getFirstName());
@@ -59,15 +56,10 @@ public class AdminUserServiceImpl implements AdminUserService
 	 * Handles the creation process
 	 * @param dto the user input basically
 	 * @return User user the created user
-	 * @throws AuthorityDoesNotExistException If the authority we try to add does not exist for some reason.
-	 * This exception is needed for notifying the user that the authority does not exist currently and to create it. 
 	 */
-	private User handleCreation(AdminUserDTO dto) throws AuthorityDoesNotExistException 
+	private User handleCreation(AdminUserDTO dto) 
 	{
-		
-		AuthorityType type = AuthorityType.fromString(dto.getAuthority());
-		
-		Authority auth = new Authority(type);
+		Authority auth = new Authority(dto.getAuthority());	
 		
 		User user = new User(dto.getUsername(), dto.getPassword(), dto.getIsActive());
 		
@@ -104,6 +96,13 @@ public class AdminUserServiceImpl implements AdminUserService
 			String encodedPassword = this.encoder.encode(dto.getPassword());
 			
 			dto.setPassword(encodedPassword);
+		}
+		
+		// If the authority is not in the enum
+		if(!AuthorityType.exists(dto.getAuthority())) 
+		{
+			// Throw an exception
+			throw new AuthorityDoesNotExistException();
 		}
 		
 		// We search for the resource

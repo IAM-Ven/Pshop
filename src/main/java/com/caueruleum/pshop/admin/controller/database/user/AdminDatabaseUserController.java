@@ -14,10 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.caueruleum.pshop.admin.service.AdminUserService;
 import com.caueruleum.pshop.dto.admin.AdminUserDTO;
-import com.caueruleum.pshop.entity.Authority;
 import com.caueruleum.pshop.entity.User;
 import com.caueruleum.pshop.model.AuthorityType;
-import com.caueruleum.pshop.service.AuthorityService;
 import com.caueruleum.pshop.service.UserService;
 
 @Controller
@@ -26,9 +24,6 @@ public class AdminDatabaseUserController
 {
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private AuthorityService authorityService;
 	
 	@Autowired
 	private AdminUserService adminUserService;

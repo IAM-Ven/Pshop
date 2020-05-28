@@ -41,6 +41,11 @@ public class Authority
 		this.authority = authority.getType();
 	}
 
+	public Authority(String authority) 
+	{
+		this.authority = authority;
+	}
+	
 	public int getId() {
 		return id;
 	}

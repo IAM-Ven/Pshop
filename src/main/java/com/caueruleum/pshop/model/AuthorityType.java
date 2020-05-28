@@ -33,4 +33,23 @@ public enum AuthorityType
         }
         return null;
     }
+	
+	/**
+	 * Check if the authority is in the enum.
+	 * @param authority String the text to check
+	 * @return boolean true if exits.
+	 */
+	public static boolean exists(String authority) 
+	{
+		for (AuthorityType auth : AuthorityType.values()) 
+        {
+            if (auth.type.equalsIgnoreCase(authority)) 
+            {
+                return true;
+            }
+        }
+		
+		return false;
+	}
+	
 }
