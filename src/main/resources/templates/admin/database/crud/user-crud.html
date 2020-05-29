@@ -9,7 +9,7 @@
 		<form th:action="@{/admin/database/user/process-cu}" th:object="${dto}" method="POST">
 			<div class="form-group">
 			    <label for="username">Username</label>
-			    <input type="text" class="form-control" id="username" th:field="*{username}">
+			    <input type="text" class="form-control" id="username" th:field="*{username}" th:readonly="${dto.username != null}">
 		 	</div>
 		 	
 		 	<div class="form-group">

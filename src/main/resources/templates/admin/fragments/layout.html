@@ -10,22 +10,22 @@
 		<header th:fragment="header">
 			<div class="container-fluid">
 				<nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark">
-	  				<a class="navbar-brand" href="#">Navbar</a>
+	  				<a class="navbar-brand" href="/admin/">Navbar</a>
 					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon"></span>
 					  </button>
 					  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 					    <ul class="navbar-nav">
-					      <li class="nav-item active">
-					        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					      <li class="nav-item" id="home">
+					        <a class="nav-link" href="/admin/">Home</a>
 					      </li>
-					      <li class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					      <li class="nav-item dropdown" id="database">
+					        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					          Databases(CRUD)
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					          <a class="dropdown-item" href="database/user/">User</a>
-					          <a class="dropdown-item" href="#">Another action</a>
+					          <a class="dropdown-item" id="user" href="/admin/database/user/">User</a>
+					          <a class="dropdown-item" id = "product" href="/admin/database/product/">Product</a>
 					          <a class="dropdown-item" href="#">Something else here</a>
 					        </div>
 					      </li>
@@ -44,6 +44,38 @@
 		
 		<footer th:fragment="footer">
 			 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			 
+			<script>
+
+
+				$(document).ready(()=> 
+				{
+
+					const path = window.location.pathname;
+					
+					const pd = path.split("/").filter(e=> {return e != ""} );
+					
+					if(pd.length === 1) 
+					{
+						switch(pd[0])
+						{
+							case "admin":
+								$('#home').addClass('active');
+						}
+					}
+					else if (pd.length > 1) 
+					{
+						for(let i = 1; i<path.length; i++) 
+						{
+							$('#' + pd[i]).addClass('active');
+						}
+					}
+					 
+					
+
+				});
+			</script>
+		
 		</footer>
 	</body>
 </html>
