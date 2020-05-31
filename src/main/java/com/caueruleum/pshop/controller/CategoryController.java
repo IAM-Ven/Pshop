@@ -36,7 +36,6 @@ public class CategoryController
 		
 		List<Category> categories = categoryService.findAll();
 		
-		System.out.println(categories);
 		
 		model.addAttribute("categories", categories);
 		

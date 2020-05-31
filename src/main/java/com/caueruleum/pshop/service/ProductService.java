@@ -46,4 +46,11 @@ public interface ProductService
 	 * @return PageModel<Product> the page of the products
 	 */
 	public PageModel<Product> findAllPaginate(int page, int maxPageItems);
+
+	/**
+	 * Contact the dao layer to delete a product.
+	 * 
+	 * @param product Product the product to delete.
+	 */
+	public void delete(Product product);
 }

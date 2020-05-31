@@ -48,6 +48,20 @@ public interface ProductDAO
 	 * @return List<Product> the list of products
 	 */
 	public List<Product> findAllPaginate(int offset, int max);
+
+	/**
+	 * Save or update a product
+	 * 
+	 * @param product Product the product
+	 */
+	public void save(Product product);
+
+	/**
+	 * Delete a product
+	 * 
+	 * @param product Product the product
+	 */
+	public void delete(Product product);
 	
 	// This will be available when I write the Aspect layer
 	// public List<Product> getPopular(int limit);

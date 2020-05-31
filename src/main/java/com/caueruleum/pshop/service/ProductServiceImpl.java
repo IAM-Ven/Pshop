@@ -58,4 +58,11 @@ public class ProductServiceImpl implements ProductService
 		return pageModel;
 		
 	}
+	
+	@Override
+	@Transactional
+	public void delete(Product product) 
+	{
+		productDAO.delete(product);
+	}
 }

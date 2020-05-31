@@ -48,7 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 				"/auth/process-reset-password","/auth/reset-password-confirmation",
 				"/auth/process-reset-password-confirmation").anonymous()
 		//.antMatchers("/actuator/**").hasRole("ADMIN")
-		.antMatchers("/admin/**", "/actuator/**").hasRole("USER") // for now
+		.antMatchers("/admin/**", "/actuator/**").hasRole("ADMIN") // for now
 		.antMatchers("/auth/logout").authenticated()
 		.anyRequest().authenticated()
 		.and()
@@ -61,9 +61,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter
 			.logoutUrl("/auth/logout")
 			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
-			.deleteCookies("JSESSIONID")
-		.and()
-			;
+			.deleteCookies("JSESSIONID");
 	}
 	
 	@Bean

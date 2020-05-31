@@ -8,7 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminHomeController
 {
-	@GetMapping
+	@GetMapping("/")
+	private String redirectToHome() 
+	{
+		return "redirect:/admin/home/";
+	}
+	
+	@GetMapping("/home/")
 	private String showHome() 
 	{
 		return "admin/index";

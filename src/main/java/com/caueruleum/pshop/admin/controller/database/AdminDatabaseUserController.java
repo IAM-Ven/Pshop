@@ -1,4 +1,4 @@
-package com.caueruleum.pshop.admin.controller.database.user;
+package com.caueruleum.pshop.admin.controller.database;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import com.caueruleum.pshop.model.AuthorityType;
 import com.caueruleum.pshop.service.UserService;
 
 @Controller
-@RequestMapping("admin/database")
+@RequestMapping("admin/database/user")
 public class AdminDatabaseUserController
 {
 	@Autowired
@@ -28,7 +28,7 @@ public class AdminDatabaseUserController
 	@Autowired
 	private AdminUserService adminUserService;
 	
-	@GetMapping("/user/")
+	@GetMapping("/")
 	public String getUser(Model model) 
 	{
 		
@@ -40,7 +40,7 @@ public class AdminDatabaseUserController
 	
 	}
 	
-	@GetMapping(value = {"/user/cu/{username}", "/user/cu/"})
+	@GetMapping(value = {"/cu/{username}", "/cu/"})
 	private String getCuUser(@PathVariable(required=false) String username, Model model ) 
 	{
 		// If we are passing it in "flash" attribute
@@ -62,6 +62,12 @@ public class AdminDatabaseUserController
 		{
 			User user = userService.findUserByUsername(username);
 			
+			if(user == null) 
+			{
+				model.addAttribute("error", "doesNotExist");
+				return "redirect:/admin/database/user";
+			}
+			
 			dto = new AdminUserDTO(user.getUsername(), user.getPassword(), user.getIsActive(),
 					user.getAuthority().getAuthority(), user.getUserDetail().getFirstName(),
 					user.getUserDetail().getLastName(), user.getUserDetail().getEmail(),
@@ -75,7 +81,7 @@ public class AdminDatabaseUserController
 		
 	}
 	
-	@PostMapping("/user/process-cu")
+	@PostMapping("/process-cu")
 	private String processCuUser(@ModelAttribute("dto") AdminUserDTO dto, 
 			RedirectAttributes attr, Model model) 
 	{
@@ -100,7 +106,7 @@ public class AdminDatabaseUserController
 		}
 	}
 	
-	@GetMapping("/user/delete/{username}/")
+	@GetMapping("/delete/{username}/")
 	private String processDelete(@PathVariable String username, Model model, RedirectAttributes attr) 
 	{
 		User user = this.userService.findUserByUsername(username);
@@ -118,8 +124,6 @@ public class AdminDatabaseUserController
 		
 		return "redirect:/admin/database/user/";
 		
-		
 	}
-
 	
 }

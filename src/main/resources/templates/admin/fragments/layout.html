@@ -10,14 +10,14 @@
 		<header th:fragment="header">
 			<div class="container-fluid">
 				<nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark">
-	  				<a class="navbar-brand" href="/admin/">Navbar</a>
+	  				<a class="navbar-brand" href="/admin/home/">Navbar</a>
 					  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					    <span class="navbar-toggler-icon"></span>
 					  </button>
 					  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 					    <ul class="navbar-nav">
 					      <li class="nav-item" id="home">
-					        <a class="nav-link" href="/admin/">Home</a>
+					        <a class="nav-link" href="/admin/home/">Home</a>
 					      </li>
 					      <li class="nav-item dropdown" id="database">
 					        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,20 +55,10 @@
 					
 					const pd = path.split("/").filter(e=> {return e != ""} );
 					
-					if(pd.length === 1) 
+					
+					for(let i = 1; i<path.length; i++) 
 					{
-						switch(pd[0])
-						{
-							case "admin":
-								$('#home').addClass('active');
-						}
-					}
-					else if (pd.length > 1) 
-					{
-						for(let i = 1; i<path.length; i++) 
-						{
-							$('#' + pd[i]).addClass('active');
-						}
+						$('#' + pd[i]).addClass('active');
 					}
 					 
 					

@@ -52,7 +52,7 @@
 		    <a class="dropdown-item" th:href="@{/account/}">Профил</a>
 		    <a class="dropdown-item" th:href="@{/account/orders}">Проъчки</a>
 		    <a class="dropdown-item" th:href="@{/account/settings}">Настройки</a>
-		    <a class="dropdown-item" th:href="@{/admin/}" sec:authorize="hasRole('USER')">Админ Панел</a>
+		    <a class="dropdown-item" th:href="@{/admin/}" sec:authorize="hasRole('ADMIN')">Админ Панел</a>
 		    <div class="dropdown-divider"></div>
 		    <form th:action="@{/auth/logout}" sec:authorize="isAuthenticated()" method="POST">
     	<input type="submit" class="nav-link" value="logout">

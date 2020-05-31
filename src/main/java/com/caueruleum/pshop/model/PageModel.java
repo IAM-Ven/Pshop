@@ -25,6 +25,8 @@ public class PageModel<T>
 	/*The current page the user is on*/
 	private int currentPage;
 	
+	
+
 	/**
 	 * Constructor, there are no setters, we directly create the object
 	 * 
@@ -73,6 +75,13 @@ public class PageModel<T>
 
 	public int getCurrentPage() {
 		return currentPage;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "PageModel [items=" + items + ", pages=" + pages + ", pageSize=" + pageSize + ", resultCount="
+				+ resultCount + ", currentPage=" + currentPage + "]";
 	}
 
 }

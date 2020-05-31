@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/layout :: head_files">
+    <title>Admin - Product</title>
+</head>
+<body>
+    <header th:replace="admin/fragments/layout :: header"></header>
+
+    <div class="container-fluid" style="padding-top:20px;">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Categories</th>
+                <th scope="col">Orders</th>
+                <th scope="col">Images</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product: ${products}">
+                <th scope="row" th:text="${product.id}"></th>
+                <td th:text="${product.title}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.date.toLocaleString()}"></td>
+                <td><a th:each="c: ${product.categories}" href="#" th:text="${c.name} + ' '"></a> </td>
+                <td><a th:each="o: ${product.orders}" href="#" th:text="${o.id}"></a></td>
+                <td><a th:each="i: ${product.images}" th:href="${i.path}" th:text="${i.id}"></a></td>
+                <td><a th:href="'/admin/database/product/cu/' + ${product.id}">Update</a></td>
+                <td><a th:href="'/admin/database/product/delete/' + ${product.id} + '/'">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+		
+		<div class="container">
+			<a href="/admin/database/product/cu/">New</a>
+		</div>
+		
+    </div>
+
+    <footer th:replace="admin/fragments/layout :: footer"></footer>
+</body>
+</html>

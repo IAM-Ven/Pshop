@@ -39,6 +39,12 @@ public class ProductDAOImpl implements ProductDAO
 	{
 		return em.find(Product.class, id);
 	}
+	
+	@Override
+	public void save(Product product) 
+	{
+		em.merge(product);
+	}
 
 	@Override
 	public List<Product> getRecent(int limit) 
@@ -51,6 +57,7 @@ public class ProductDAOImpl implements ProductDAO
 		
 	}
 	
+	@Override
 	public List<Product> findAllPaginate(int offset, int max) 
 	{
 		
@@ -64,6 +71,11 @@ public class ProductDAOImpl implements ProductDAO
 		
 		
 	}
-
+	
+	@Override
+	public void delete(Product product) 
+	{
+		em.remove(product);
+	}
 
 }

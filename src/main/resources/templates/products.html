@@ -15,7 +15,7 @@
     <div class="container">
 		        <div class="mx-auto" style="padding-top:2%;">
 		        <div th:if = "${page != null}">
-		        <div th:if=${!page.items.isEmpty()}>
+		        <div th:if="${!page.items.isEmpty()}">
 		          <h1 style="text-align:center; padding-bottom:2%">Намерени Резултати</h1>
 		         <div class="col"  th:each="r_product : ${page.items}">
                 <div class="card" style="width: 18rem;">
@@ -23,7 +23,7 @@
                   <img th:src="${!r_product.images.isEmpty()} ? ${r_product.images.get(0)} : ${@environment.getProperty('pshop.defaults.product.image')}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title" th:text = "${r_product.title}"></h5>
-                    <p class="card-text" th:text = ${r_product.description}></p>
+                    <p class="card-text" th:text = "${r_product.description}"></p>
                     <hr>
                     <h5 th:text = " 'Цена : ' + ${r_product.price} + 'лв.'"></h5>
                     <a th:href="@{'/product/' + ${r_product.id}}" class="btn btn-primary">Детайли</a>
@@ -64,7 +64,7 @@
                   <img th:src="${!r_product.images.isEmpty()} ? ${r_product.images.get(0)} : ${@environment.getProperty('pshop.defaults.product.image')}" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title" th:text = "${r_product.title}"></h5>
-                    <p class="card-text" th:text = ${r_product.description}></p>
+                    <p class="card-text" th:text = "${r_product.description}"></p>
                     <hr>
                     <h5 th:text = " 'Цена : ' + ${r_product.price} + 'лв.'"></h5>
                     <a th:href="@{'/product/' + ${r_product.id}}" class="btn btn-primary">Детайли</a>
