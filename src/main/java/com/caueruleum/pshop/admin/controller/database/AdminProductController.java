@@ -168,7 +168,7 @@ public class AdminProductController
 			}
 		}
 		
-		return "redirect:/admin/database/product/" + id;
+		return "redirect:/admin/database/product/";
 		
 	}
 	
