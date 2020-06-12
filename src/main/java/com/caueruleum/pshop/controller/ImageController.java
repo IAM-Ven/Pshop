@@ -2,8 +2,14 @@ package com.caueruleum.pshop.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,8 +34,10 @@ public class ImageController
 	@Autowired
 	private ImageService imageService;	
 	
-	@GetMapping("/id/{imageId}")
-	public String showImage(Model model, @PathVariable Integer imageId) 
+	
+	@GetMapping(value = "/{imageId}/", 
+			produces = MediaType.IMAGE_JPEG_VALUE)
+	public  @ResponseBody byte[] showImage(Model model, @PathVariable Integer imageId) throws IOException 
 	{
 		Image image = null;
 		
@@ -38,9 +47,16 @@ public class ImageController
 			image = this.imageService.findById(imageId);
 		}
 		
-		model.addAttribute("image", image);
+		System.out.println("upload/" + image.getPath());
 		
-		return "image";
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("static/upload/" + image.getPath());
+		
+		return IOUtils.toByteArray(in);
+		
+		
+		
+		
+		
 	}
 	
 	@GetMapping("/upload/")

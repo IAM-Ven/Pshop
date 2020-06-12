@@ -1,11 +1,11 @@
 <html xmlns="http://www.thymeleaf.org">
 
 <head>
-	<title th:text="${image == null : image.id ? '404 - not found'}"></title>
+	<title th:text="${image == null ? '404 - not found' : image.path}"></title>
 </head>
 
 <body>
-	<img th:src="@{${image.path}}">
+	<img src="" alt="http://localhost:8080/upload/img/103322233_2824992580962818_8094536431001212385_o.jpg" class="overflowingVertical">
 </body>
 
 </html>
