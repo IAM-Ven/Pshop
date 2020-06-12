@@ -21,15 +21,19 @@ public class ImageDAOImpl implements ImageDAO
 	public List<Image> findAll()
 	{
 		TypedQuery<Image> q = em.createQuery("FROM Image", Image.class);
-		
 		return q.getResultList();
-		
 	}
 	
 	@Override
 	public Image findImageById(int id) 
 	{
 		return em.find(Image.class, id);
+	}
+	
+	@Override
+	public void save(Image image) 
+	{
+		em.merge(image);
 	}
 	
 }

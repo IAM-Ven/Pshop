@@ -22,4 +22,11 @@ public interface ImageDAO
 	 */
 	public Image findImageById(int id);
 
+	/**
+	 * Save or update an image to the database
+	 * 
+	 * @param image Image the image
+	 */
+	public void save(Image image);
+
 }

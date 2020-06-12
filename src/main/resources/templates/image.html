@@ -1,0 +1,11 @@
+<html xmlns="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${image == null : image.id ? '404 - not found'}"></title>
+</head>
+
+<body>
+	<img th:src="@{${image.path}}">
+</body>
+
+</html>

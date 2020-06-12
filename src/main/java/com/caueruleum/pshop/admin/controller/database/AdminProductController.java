@@ -123,9 +123,19 @@ public class AdminProductController
 		return "admin/database/crud/product-crud";
 	}
 	
+	/**
+	 * This handles the processing of the create/update requests
+	 * 
+	 * @param dto The dto
+	 * @param attr RedirectAttributes used for passing redirect attributes
+	 * @param model Model the mvc model
+	 * @return String the view
+	 */
 	@PostMapping("process-cu/")
 	public String processCU(@ModelAttribute AdminProductDTO dto, RedirectAttributes attr, Model model) 
 	{
+		
+		boolean success = true;
 		
 		try 
 		{
@@ -133,41 +143,51 @@ public class AdminProductController
 			
 			if(product == null) 
 			{
-				attr.addAttribute("success", false);
-			}else 
-			{
-				attr.addAttribute("success", true);
+				success = false;
 			}
 			
 		}catch(Exception ex) 
 		{
-			attr.addAttribute("success", false);
+			success = false;
 		}
 		
+		model.addAttribute("success", success);
 		return "redirect:/admin/database/product/";
 	}
 	
+	/**
+	 * Process delete request
+	 * 
+	 * @param id Integer the id to delete
+	 * @param model Model the mvc model
+	 * @param attr RedirectAttributes the redirect attributes
+	 * @return String the view
+	 */
 	@GetMapping("/delete/{id}")
 	public String processDelete(@PathVariable Integer id, Model model, RedirectAttributes attr) 
 	{
 		Product product = this.productService.findById(id);
+		 
+		boolean success = true;
 		
 		if(product == null) 
 		{
-			model.addAttribute("success", false);
-		}else 
+			success = false;
+		}
+		else 
 		{
 			try 
 			{
 				this.productService.delete(product);
 				
-				model.addAttribute("success", true);
-			}catch (Exception ex) 
+			}
+			catch (Exception ex) 
 			{
-				model.addAttribute("success", false);
+				success = false;
 			}
 		}
 		
+		model.addAttribute("success", success);
 		return "redirect:/admin/database/product/";
 		
 	}

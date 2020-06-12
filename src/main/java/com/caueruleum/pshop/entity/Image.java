@@ -49,6 +49,10 @@ public class Image
 		this.turn = turn;
 	}
 
+	public Image()
+	{
+	}
+
 	public int getId() {
 		return id;
 	}
