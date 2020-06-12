@@ -32,8 +32,9 @@ public class ImageController
 	{
 		Image image = null;
 		
-		{
+		
 		if(!(imageId <= 0)) 
+		{
 			image = this.imageService.findById(imageId);
 		}
 		

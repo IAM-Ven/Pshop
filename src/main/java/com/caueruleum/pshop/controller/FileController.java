@@ -13,6 +13,17 @@ public class FileController
 	@GetMapping("/upload-status")
 	public String showStatus(Model model, @RequestParam(required = true) Boolean error) 
 	{
+		String strErr = "";
+		
+		if(error == false) 
+		{
+			strErr = "Качването е успешно";
+		}else 
+		{
+			strErr = "Качването не е успешно";
+		}
+		
+		model.addAttribute("error", strErr);
 		return "upload-status";
 	}
 }

@@ -1,0 +1,24 @@
+<html xmlns="http://www.thymeleaf.org">
+
+	<head th:insert="fragments/navbar.html :: header_files">
+		<title> Upload Status </title>
+	</head>
+
+	<body>
+		
+		<div th:replace="fragments/navbar.html :: guest_navbar" ></div>
+		<div class="container" style="text-align:center; padding-top:15%;">
+			<div th:if="${#request.getParameter('error') == 'false'}">
+				<div class="alert alert-success" role="alert">
+  					<h1>Успешно качване.</h1>
+				</div>
+			</div>
+			<div th:if="${#request.getParameter('error') == 'true'}">
+				<div class="alert alert-danger" role="alert">
+					<h1>Неуспешно качване.</h1>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
