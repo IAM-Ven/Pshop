@@ -11,19 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FileController
 {
 	@GetMapping("/upload-status")
-	public String showStatus(Model model, @RequestParam(required = true) Boolean error) 
+	public String showUploadStatus(Model model, @RequestParam(required = true) Boolean error) 
 	{
-		String strErr = "";
-		
-		if(error == false) 
-		{
-			strErr = "Качването е успешно";
-		}else 
-		{
-			strErr = "Качването не е успешно";
-		}
-		
-		model.addAttribute("error", strErr);
 		return "upload-status";
+	}
+	
+	@GetMapping("/seek-status")
+	public String showSeekStatus(Model model, @RequestParam(required=true) Boolean error) 
+	{
+		return "seek-status";
 	}
 }
