@@ -4,6 +4,12 @@ import java.io.IOException;
 
 import com.caueruleum.pshop.uploader.file.PshopFile;
 
+/**
+ * This is where all the low level file upload happens
+ * 
+ * @author caueruleum
+ *
+ */
 public interface Uploader
 {
 	/**
